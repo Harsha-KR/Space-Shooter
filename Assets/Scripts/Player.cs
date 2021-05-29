@@ -5,18 +5,32 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 3.5f;
+    [SerializeField]
+    private GameObject laser;
+    Vector3 laserOffset;
+    [SerializeField]
+    private float fireRate = 0.5f;
+    private float canFire = -1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         this.transform.position = Vector3.zero;
+        laserOffset = new Vector3(0, 0.5f, 0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         CalculateMovement();
 
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        {
+            FireLaser();
+        }
+    }
+    private void FireLaser()
+    {        
+        Instantiate(laser, this.transform.position + laserOffset, Quaternion.identity);
+        canFire = Time.time + fireRate;
     }
 
     private void CalculateMovement()
