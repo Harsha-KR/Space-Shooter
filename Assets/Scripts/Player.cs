@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    SpawnManager spawnManager;
     public float speed = 3.5f;
     [SerializeField]
     private GameObject laser;
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         if(life == 0)
         {
             Destroy(this.gameObject);
+            spawnManager.OnPlayerDeath();
         }
     }
 }

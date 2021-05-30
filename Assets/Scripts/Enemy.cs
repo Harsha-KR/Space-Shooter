@@ -5,19 +5,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    float speed = 4f;
-    Vector3 spawnPosition;   
+    float speed = 4f; 
 
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
-        spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
-
-
         if (transform.position.y <-5f)
         {
-            transform.position = spawnPosition;
+            Destroy(this.gameObject);
         }        
     }
     private void OnTriggerEnter(Collider other)
