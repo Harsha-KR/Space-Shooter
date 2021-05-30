@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     {
         this.transform.position = Vector3.zero;
         laserOffset = new Vector3(0, 0.5f, 0f);
+
+        if(spawnManager ==null)
+        {
+            Debug.LogError("SpawnManager is null, asign the Game object in inspector");
+        }
     }
 
     void Update()
