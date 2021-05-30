@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     private float fireRate = 0.5f;
     private float canFire = -1f;
 
+    private int life = 3;
+
     void Start()
     {
         this.transform.position = Vector3.zero;
@@ -51,6 +53,16 @@ public class Player : MonoBehaviour
         else if (transform.position.x < -9.3f)
         {
             transform.position = new Vector3(9.3f, transform.position.y, 0f);
+        }
+    }
+
+    public void Damage()
+    {
+        life--;
+
+        if(life == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }
