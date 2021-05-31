@@ -150,6 +150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1713543651}
+  - {fileID: 1184705769}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,6 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 7602836377890311263, guid: 820d22668b37fb0478227a6228ac4fbc, type: 3}
   enemyContainer: {fileID: 1713543650}
+  trippleShotPowerUp: {fileID: 7317781862884783094, guid: 397476856bd584e4f86f20ae9287f7f9,
+    type: 3}
+  powerUpContainer: {fileID: 1184705768}
 --- !u!1 &777053011
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +254,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1184705768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184705769}
+  m_Layer: 0
+  m_Name: Power Ups Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184705769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184705768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 744366347}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350202632
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,8 +359,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350202632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 1.07, z: 0}
-  m_LocalScale: {x: 1.394067, y: 1.4229586, z: 1}
+  m_LocalPosition: {x: 0.044, y: 1.111, z: 0}
+  m_LocalScale: {x: 1.872399, y: 1.4454967, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -473,12 +507,12 @@ PrefabInstance:
     - target: {fileID: 5485627169351099645, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.54
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5485627169351099645, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5485627169351099645, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
@@ -522,9 +556,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
-      propertyPath: laser
+      propertyPath: fireRate
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
+        type: 3}
+      propertyPath: trippleShot
       value: 
-      objectReference: {fileID: 2409857614781025958, guid: 3e329c4465c7ed145afdd726866105e7,
+      objectReference: {fileID: 9044741406618310950, guid: 1a5842e985dc87f4cbabc226254525c9,
         type: 3}
     - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
