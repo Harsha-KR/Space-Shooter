@@ -170,6 +170,8 @@ MonoBehaviour:
   enemyContainer: {fileID: 1713543650}
   trippleShotPowerUp: {fileID: 7317781862884783094, guid: 397476856bd584e4f86f20ae9287f7f9,
     type: 3}
+  speedPowerup: {fileID: 97110391580297860, guid: 1b374020083d6204491f3225d0a1c553,
+    type: 3}
   powerUpContainer: {fileID: 1184705768}
 --- !u!1 &777053011
 GameObject:
@@ -554,17 +556,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
-        type: 3}
-      propertyPath: fireRate
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
-        type: 3}
-      propertyPath: trippleShot
-      value: 
-      objectReference: {fileID: 9044741406618310950, guid: 1a5842e985dc87f4cbabc226254525c9,
-        type: 3}
     - target: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854,
         type: 3}
       propertyPath: spawnManager
