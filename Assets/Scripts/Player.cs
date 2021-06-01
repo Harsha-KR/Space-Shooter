@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     SpawnManager spawnManager;
+    [SerializeField]
     private float speed = 5f;
+    private float speedBoostMultiplier = 2f;
     [SerializeField]
     private GameObject laser;
     [SerializeField]
@@ -68,15 +70,6 @@ public class Player : MonoBehaviour
 
     private void CalculateMovement()
     {
-        if(isSpeedPowerUpActive == true)
-        {
-            speed = 10f;
-        }
-        else
-        {
-            speed = 5f;
-        }
-
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -103,8 +96,10 @@ public class Player : MonoBehaviour
     }
     IEnumerator SpeedPowerupCoroutine()
     {
+        speed *= speedBoostMultiplier;
         yield return new WaitForSeconds(5f);
         isSpeedPowerUpActive = false;
+        speed /= speedBoostMultiplier;
     }
 
     public void Damage()
