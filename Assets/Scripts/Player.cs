@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     SpawnManager spawnManager;
-    public float speed = 3.5f;
+    [SerializeField]
+    private float speed = 5f;
+    private float speedBoostMultiplier = 2f;
     [SerializeField]
     private GameObject laser;
     [SerializeField]
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     private int life = 3;
 
     private bool isTrippleShotActive;
+    private bool isSpeedPowerUpActive;
 
     void Start()
     {
@@ -53,6 +56,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TrippelShotActive()
+    {
+        isTrippleShotActive = true;
+        StartCoroutine(TrippelShotCooldownRoutine());
+
+    }
+    IEnumerator TrippelShotCooldownRoutine()
+    {
+        yield return new WaitForSeconds(5f);
+        isTrippleShotActive = false;
+    }
+
     private void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -74,6 +89,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SpeedPowerupActive()
+    {
+        isSpeedPowerUpActive = true;
+        StartCoroutine(SpeedPowerupCoroutine());
+    }
+    IEnumerator SpeedPowerupCoroutine()
+    {
+        speed *= speedBoostMultiplier;
+        yield return new WaitForSeconds(5f);
+        isSpeedPowerUpActive = false;
+        speed /= speedBoostMultiplier;
+    }
+
     public void Damage()
     {
         life--;
@@ -83,17 +111,5 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             spawnManager.OnPlayerDeath();
         }
-    }
-
-    public void TrippelShotActive()
-    {
-        isTrippleShotActive = true;
-        StartCoroutine(TrippelShotCooldownRoutine());
-
-    }
-    IEnumerator TrippelShotCooldownRoutine()
-    {
-        yield return new WaitForSeconds(5f);
-        isTrippleShotActive = false;
-    }
+    }       
 }
