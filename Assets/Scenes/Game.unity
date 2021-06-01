@@ -168,10 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 7602836377890311263, guid: 820d22668b37fb0478227a6228ac4fbc, type: 3}
   enemyContainer: {fileID: 1713543650}
-  trippleShotPowerUp: {fileID: 7317781862884783094, guid: 397476856bd584e4f86f20ae9287f7f9,
-    type: 3}
-  speedPowerup: {fileID: 97110391580297860, guid: 1b374020083d6204491f3225d0a1c553,
-    type: 3}
+  PowerUp:
+  - {fileID: 97110391580297860, guid: 1b374020083d6204491f3225d0a1c553, type: 3}
+  - {fileID: 7317781862884783094, guid: 397476856bd584e4f86f20ae9287f7f9, type: 3}
   powerUpContainer: {fileID: 1184705768}
 --- !u!1 &777053011
 GameObject:

@@ -10,9 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyContainer;
     [SerializeField]
-    private GameObject trippleShotPowerUp;
-    [SerializeField]
-    private GameObject speedPowerup;
+    private GameObject[] PowerUp;
     [SerializeField]
     private GameObject powerUpContainer;
 
@@ -21,28 +19,16 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnTrippleShotRoutine());
-        StartCoroutine(SpawnSpeedPowerupRoutine());
+        StartCoroutine(PowerupRoutine());
     }
-
-    IEnumerator SpawnTrippleShotRoutine()
+        
+    IEnumerator PowerupRoutine()
     {
         while (stopSpawning == false)
         {
             yield return new WaitForSeconds(Random.Range(15f, 20f));
             spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
-            GameObject _powerUp = Instantiate(trippleShotPowerUp, spawnPosition, Quaternion.identity);
-            _powerUp.transform.parent = powerUpContainer.transform;
-        }
-
-    }
-    IEnumerator SpawnSpeedPowerupRoutine()
-    {
-        while (stopSpawning == false)
-        {
-            yield return new WaitForSeconds(Random.Range(15f, 20f));
-            spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
-            GameObject _powerUp = Instantiate(speedPowerup, spawnPosition, Quaternion.identity);
+            GameObject _powerUp = Instantiate(PowerUp[Random.Range(0,PowerUp.Length)], spawnPosition, Quaternion.identity);
             _powerUp.transform.parent = powerUpContainer.transform;
         }
 
