@@ -97,10 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 0}
+  speed: 5
   laser: {fileID: 2409857614781025958, guid: 3e329c4465c7ed145afdd726866105e7, type: 3}
   trippleShot: {fileID: 9044741406618310950, guid: 1a5842e985dc87f4cbabc226254525c9,
     type: 3}
   fireRate: 0.15
+  life: 3
+  isShieldActive: 0
 --- !u!61 &5485627169351099647
 BoxCollider2D:
   m_ObjectHideFlags: 0

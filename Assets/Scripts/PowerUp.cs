@@ -33,12 +33,15 @@ public class PowerUp : MonoBehaviour
             {
                 switch(pType)
                 {
-                    case PowerUpType.TrippleShot: player.TrippelShotActive();
+                    case PowerUpType.TrippleShot: 
+                        player.TrippelShotActive();
                         break;
-                    case PowerUpType.Speed: player.SpeedPowerupActive();
+                    case PowerUpType.Speed: 
+                        player.SpeedPowerupActive();
                         break;
                     case PowerUpType.Shield:
                         Debug.Log("Shield Collected");
+                        player.ShieldActive();
                         break;
                 }                
             }
