@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (stopSpawning == false)
         {
-            yield return new WaitForSeconds(Random.Range(15f, 20f));
+            yield return new WaitForSeconds(Random.Range(5f, 10f));
             spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
             GameObject _powerUp = Instantiate(PowerUp[Random.Range(0,PowerUp.Length)], spawnPosition, Quaternion.identity);
             _powerUp.transform.parent = powerUpContainer.transform;

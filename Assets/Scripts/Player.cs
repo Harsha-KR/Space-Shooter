@@ -18,10 +18,14 @@ public class Player : MonoBehaviour
     private float fireRate;
     private float canFire = -1f;
 
+    [SerializeField]
+    GameObject shieldEffect;
+
+    [SerializeField]
     private int life = 3;
 
     private bool isTrippleShotActive;
-    private bool isSpeedPowerUpActive;
+    public bool isShieldActive;
 
     void Start()
     {
@@ -91,19 +95,24 @@ public class Player : MonoBehaviour
 
     public void SpeedPowerupActive()
     {
-        isSpeedPowerUpActive = true;
         StartCoroutine(SpeedPowerupCoroutine());
     }
     IEnumerator SpeedPowerupCoroutine()
     {
         speed *= speedBoostMultiplier;
         yield return new WaitForSeconds(5f);
-        isSpeedPowerUpActive = false;
         speed /= speedBoostMultiplier;
     }
 
     public void Damage()
     {
+        if (isShieldActive == true)
+        {
+            isShieldActive = false;
+            shieldEffect.gameObject.SetActive(false);
+            return;
+        }
+
         life--;
 
         if(life == 0)
@@ -111,5 +120,19 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             spawnManager.OnPlayerDeath();
         }
-    }       
+    } 
+    
+    public void ShieldActive()
+    {
+        isShieldActive = true;
+        shieldEffect.gameObject.SetActive(true);
+        StartCoroutine(ActivateShieldRoutine());
+    }
+    
+    IEnumerator ActivateShieldRoutine()
+    {        
+        yield return new WaitForSeconds(5f);
+        isShieldActive = false;
+        shieldEffect.gameObject.SetActive(false);
+    }
 }
