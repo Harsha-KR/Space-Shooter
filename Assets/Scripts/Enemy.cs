@@ -8,14 +8,12 @@ public class Enemy : MonoBehaviour
     float speed = 4f;
 
     Player player;
+    int points;
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        if (player == null)
-        {
-            Debug.Log("The fuck");
-        }
+        points = Random.Range(10, 15);
     }
 
     void Update()
@@ -31,7 +29,10 @@ public class Enemy : MonoBehaviour
     {
         if(other.tag == "Laser")
         {
-            player.ScoreKeeper();
+            if (player != null)
+            {
+                player.ScoreKeeper(points);
+            }
             Destroy(other.gameObject);            
             Destroy(this.gameObject);          
             

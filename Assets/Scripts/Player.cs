@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         this.transform.position = Vector3.zero;
         laserOffset = new Vector3(0, 0.9f, 0f);
-        uIManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
+        uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         if(uIManager == null)
         {
             Debug.LogError("UI Manager is null, in player script");
@@ -124,6 +124,8 @@ public class Player : MonoBehaviour
 
         life--;
 
+        uIManager.UpdateLives(life);
+
         if(life == 0)
         {
             Destroy(this.gameObject);
@@ -145,9 +147,9 @@ public class Player : MonoBehaviour
         shieldEffect.gameObject.SetActive(false);
     }
 
-    public void ScoreKeeper()
+    public void ScoreKeeper(int points)
     {
-        score += 10;
+        score += points;
         uIManager.UpdateScore(score);
     }
 }
