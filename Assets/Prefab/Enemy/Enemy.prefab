@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  player: {fileID: 5485627169351099646, guid: a05f574fb0c6bc64bbcee98a29ae6854, type: 3}
 --- !u!212 &6330512248928308735
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -27,10 +27,19 @@ public class Player : MonoBehaviour
     private bool isTrippleShotActive;
     public bool isShieldActive;
 
+    private int score = 0000;
+
+    UIManager uIManager;
+
     void Start()
     {
         this.transform.position = Vector3.zero;
         laserOffset = new Vector3(0, 0.9f, 0f);
+        uIManager = GameObject.Find("UI_Manager").GetComponent<UIManager>();
+        if(uIManager == null)
+        {
+            Debug.LogError("UI Manager is null, in player script");
+        }
 
         if(spawnManager ==null)
         {
@@ -134,5 +143,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         isShieldActive = false;
         shieldEffect.gameObject.SetActive(false);
+    }
+
+    public void ScoreKeeper()
+    {
+        score += 10;
+        uIManager.UpdateScore(score);
     }
 }
