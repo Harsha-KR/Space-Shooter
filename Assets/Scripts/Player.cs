@@ -128,8 +128,9 @@ public class Player : MonoBehaviour
 
         if(life == 0)
         {
-            Destroy(this.gameObject);
+            uIManager.GameOver();
             spawnManager.OnPlayerDeath();
+            Destroy(this.gameObject);            
         }
     } 
     
