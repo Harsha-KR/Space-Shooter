@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    SpawnManager spawnManager;
+
     [SerializeField]
     private Text scoreText;
 
@@ -17,10 +19,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Image livesUiImage;
 
-    public bool isGameOver;
+    [SerializeField]
+    Text restart_txt;
 
     private void Start()
     {
+        spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         scoreText.text = "Score: " + 0000;
     }
 
@@ -37,14 +41,14 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        isGameOver = true;
         StartCoroutine(GameOverFlickerRoutine());
         
     }
     IEnumerator GameOverFlickerRoutine()
     {
-        while (isGameOver == true)
+        while (spawnManager.isPlayerDead == true)
         {
+            restart_txt.gameObject.SetActive(true);
             gameOver_txt.gameObject.SetActive(true);
             yield return new WaitForSeconds(.5f);
             gameOver_txt.gameObject.SetActive(false);
