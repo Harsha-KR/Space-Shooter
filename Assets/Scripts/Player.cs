@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    StateManager stateManager;
+    [SerializeField]
     SpawnManager spawnManager;
     [SerializeField]
     private float speed = 5f;
@@ -128,7 +130,7 @@ public class Player : MonoBehaviour
 
         if(life == 0)
         {            
-            spawnManager.OnPlayerDeath();
+            stateManager.OnPlayerDeath();
             uIManager.GameOver();
             Destroy(this.gameObject);            
         }

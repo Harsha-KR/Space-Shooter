@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -14,28 +13,18 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] PowerUp;
     [SerializeField]
     private GameObject powerUpContainer;
-
-    public bool isPlayerDead { get; private set; }
+    [SerializeField]
+    StateManager stateManager;    
 
     void Start()
     {
-        isPlayerDead = false;
-        Debug.Log("isPlayerDead" + isPlayerDead);
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(PowerupRoutine());
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(0);
-        }
-    }
-
     IEnumerator PowerupRoutine()
     {
-        while (isPlayerDead == false)
+        while (stateManager.isPlayerDead == false)
         {
             yield return new WaitForSeconds(Random.Range(5f, 10f));
             spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
@@ -47,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemyRoutine()
     {
-        while (isPlayerDead == false)
+        while (stateManager.isPlayerDead == false)
         {
             spawnPosition = new Vector3(Random.Range(-8f, 8f), 7f, 0f);
             GameObject _newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
@@ -55,11 +44,4 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
     }
-
-    public void OnPlayerDeath()
-    {
-        isPlayerDead = true;
-        Debug.Log("isPlayerDead" + isPlayerDead);
-    }
-
 }
