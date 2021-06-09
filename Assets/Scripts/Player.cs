@@ -131,7 +131,6 @@ public class Player : MonoBehaviour
         if(life == 0)
         {            
             stateManager.OnPlayerDeath();
-            uIManager.GameOver();
             Destroy(this.gameObject);            
         }
     } 
