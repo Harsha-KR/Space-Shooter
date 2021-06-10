@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    Animator anim;
     [SerializeField]
     float speed = 4f;
 
@@ -12,7 +13,16 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
+        if(anim == null)
+        {
+            Debug.Log("Animator is null");
+        }
         player = GameObject.Find("Player").GetComponent<Player>();
+        if(player == null)
+        {
+            Debug.Log("Player is null in");
+        }
         points = Random.Range(10, 15);
     }
 
@@ -33,8 +43,9 @@ public class Enemy : MonoBehaviour
             {
                 player.ScoreKeeper(points);
             }
-            Destroy(other.gameObject);            
-            Destroy(this.gameObject);          
+            Destroy(other.gameObject);
+            ExplosionAnim();
+                     
             
         }else if(other.tag == "Player")
         {
@@ -43,7 +54,19 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-            Destroy(this.gameObject);
+            ExplosionAnim();
         }
+    }
+
+    private void ExplosionAnim()
+    {
+        anim.Play("EnemyExplosion_anim");
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(this.gameObject, 2.2f);
+    }
+
+    private void ReduceSpeed()
+    {
+        speed = 0f;
     }
 }
