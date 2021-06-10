@@ -16,25 +16,31 @@ public class Enemy : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         if(anim == null)
         {
-            Debug.Log("Animator is null");
+            Debug.Log("Animator is null on: " + this.gameObject.name);
         }
         player = GameObject.Find("Player").GetComponent<Player>();
         if(player == null)
         {
-            Debug.Log("Player is null in");
+            Debug.Log("Player is null in" + this.gameObject.name);
         }
         points = Random.Range(10, 15);
     }
 
     void Update()
     {
+        Move();
+    }
+
+    private void Move()
+    {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
-        if (transform.position.y <-5f)
+        if (transform.position.y < -5f)
         {
             Destroy(this.gameObject);
-        }        
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Laser")
@@ -60,8 +66,8 @@ public class Enemy : MonoBehaviour
 
     private void ExplosionAnim()
     {
-        anim.Play("EnemyExplosion_anim");
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        anim.SetTrigger("isTrigger");
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
         Destroy(this.gameObject, 2.2f);
     }
 
