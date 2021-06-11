@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject enemy;
-    public GameObject asteroid;
     Vector3 spawnPosition;
 
     [SerializeField]
@@ -15,17 +14,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject powerUpContainer;
     [SerializeField]
-    StateManager stateManager;    
+    StateManager stateManager;  
 
-    void Start()
+    public void StartSpawnning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(PowerupRoutine());
-        StartCoroutine(AsteroidRoutine());
     }
 
     IEnumerator PowerupRoutine()
     {
+        yield return new WaitForSeconds(1.5f);
         while (stateManager.isPlayerDead == false)
         {
             yield return new WaitForSeconds(Random.Range(10f, 15f));
@@ -38,23 +37,13 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemyRoutine()
     {
+        yield return new WaitForSeconds(1.5f);
         while (stateManager.isPlayerDead == false)
         {
             spawnPosition = new Vector3(Random.Range(-7f, 7f), 7f, 0f);
             GameObject _newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
             _newEnemy.transform.parent = enemyContainer.transform;
             yield return new WaitForSeconds(1.5f);
-        }
-    }
-
-    IEnumerator AsteroidRoutine()
-    {
-        while(stateManager.isPlayerDead == false)
-        {
-            spawnPosition = new Vector3(Random.Range(-7f, 7f), 7f, 0f);
-            GameObject _newAsteroid = Instantiate(asteroid, spawnPosition, Quaternion.identity);
-            _newAsteroid.transform.parent = enemyContainer.transform;
-            yield return new WaitForSeconds(Random.Range(20f, 30f));
         }
     }
 }
