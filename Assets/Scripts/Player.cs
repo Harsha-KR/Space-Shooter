@@ -20,8 +20,14 @@ public class Player : MonoBehaviour
     private float fireRate;
     private float canFire = -1f;
 
+    #region Player Childern
     [SerializeField]
     GameObject shieldEffect;
+    [SerializeField]
+    GameObject damageLow;
+    [SerializeField]
+    GameObject damageHigh; 
+    #endregion
 
     [SerializeField]
     private int life = 3;
@@ -92,7 +98,7 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(direction * (speed + speedModifier/600) * Time.deltaTime);
+        transform.Translate(direction * (speed + speedModifier/75) * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3f, 0f), 0f);
         
@@ -129,6 +135,7 @@ public class Player : MonoBehaviour
         life--;
 
         uIManager.UpdateLives(life);
+        FireDamage();
 
         if(life == 0)
         {            
@@ -156,5 +163,16 @@ public class Player : MonoBehaviour
         score += points;
         speedModifier = (float)score;
         uIManager.UpdateScore(score);
+    }
+
+    public void FireDamage()
+    {
+        if(life==2)
+        {
+            damageLow.SetActive(true);
+        }else if(life ==1)
+        {
+            damageHigh.SetActive(true);
+        }
     }
 }

@@ -79,6 +79,6 @@ public class Enemy : MonoBehaviour
 
     public void IncreaseSpeed(float _speed)
     {
-        speed += _speed / 1000;
+        speed += _speed / 125;
     }
 }
