@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    AudioSource audioSource;
+
     Animator anim;
     [SerializeField]
     float speed = 4f;
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         anim = gameObject.GetComponent<Animator>();
         if(anim == null)
         {
@@ -22,6 +25,11 @@ public class Enemy : MonoBehaviour
         if(player == null)
         {
             Debug.Log("Player is null in" + this.gameObject.name);
+        }
+
+        if(audioSource == null)
+        {
+            Debug.Log("Audio source is null in " + this.gameObject.name);
         }
         points = Random.Range(10, 15);
         speed += player.speedModifier/1000;
@@ -51,7 +59,7 @@ public class Enemy : MonoBehaviour
                 player.ScoreKeeper(points);
             }
             Destroy(other.gameObject);
-            ExplosionAnim();
+            ExplosionSequence();
                      
             
         }else if(other.tag == "Player")
@@ -61,13 +69,14 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-            ExplosionAnim();
+            ExplosionSequence();
         }
     }
 
-    private void ExplosionAnim()
+    private void ExplosionSequence()
     {
         anim.SetTrigger("isTrigger");
+        audioSource.Play();
         this.gameObject.GetComponent<Collider2D>().enabled = false;
         Destroy(this.gameObject, 2.2f);
     }

@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int life = 3;
 
+    private AudioSource audioSource;
+
     private bool isTrippleShotActive;
     public bool isShieldActive;
 
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         this.transform.position = Vector3.zero;
         laserOffset = new Vector3(0, 0.9f, 0f);
         uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        audioSource = GetComponent<AudioSource>();
         if(uIManager == null)
         {
             Debug.LogError("UI Manager is null, in player script");
@@ -54,6 +57,11 @@ public class Player : MonoBehaviour
         if(spawnManager ==null)
         {
             Debug.LogError("SpawnManager is null, asign the Game object in inspector");
+        }
+
+        if(audioSource == null)
+        {
+            Debug.LogError("Audio Source is null on player");
         }
     }
 
@@ -77,6 +85,7 @@ public class Player : MonoBehaviour
         {
             Instantiate(laser, this.transform.position + laserOffset, Quaternion.identity);
         }
+        audioSource.Play();
     }
 
     public void TrippelShotActive()

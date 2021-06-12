@@ -15,6 +15,9 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private PowerUpType pType;
 
+    [SerializeField]
+    AudioClip powerUpAudio;    
+
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
@@ -44,6 +47,7 @@ public class PowerUp : MonoBehaviour
                         break;
                 }                
             }
+            AudioSource.PlayClipAtPoint(powerUpAudio, this.transform.position);
             Destroy(this.gameObject);
         }
     }
