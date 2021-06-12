@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Player is null in" + this.gameObject.name);
         }
         points = Random.Range(10, 15);
+        speed += player.speedModifier/1000;
     }
 
     void Update()
@@ -74,5 +75,10 @@ public class Enemy : MonoBehaviour
     private void ReduceSpeed()
     {
         speed = 0f;
+    }
+
+    public void IncreaseSpeed(float _speed)
+    {
+        speed += _speed / 125;
     }
 }
