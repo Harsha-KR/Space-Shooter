@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     SpawnManager spawnManager;
     [SerializeField]
-    private float speed = 5f;
+    private float speed;
     private float speedBoostMultiplier = 2f;
     [SerializeField]
     private GameObject laser;
@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public bool isShieldActive;
 
     private int score = 0000;
+
+    public float speedModifier;
 
     UIManager uIManager;
 
@@ -90,7 +92,7 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * (speed + speedModifier/600) * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3f, 0f), 0f);
         
@@ -152,6 +154,7 @@ public class Player : MonoBehaviour
     public void ScoreKeeper(int points)
     {
         score += points;
+        speedModifier = (float)score;
         uIManager.UpdateScore(score);
     }
 }
