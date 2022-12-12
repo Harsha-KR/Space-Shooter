@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject powerUpContainer;
     [SerializeField]
-    StateManager stateManager;  
+    StateManager stateManager;
 
     public void StartSpawnning()
     {

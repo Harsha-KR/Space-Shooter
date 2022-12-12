@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     private GameObject laser;
     [SerializeField]
     private GameObject trippleShot;
+    [SerializeField]
+    private GameObject explosion;
+
     Vector3 laserOffset;
     [SerializeField]
     private float fireRate;
@@ -88,13 +91,13 @@ public class Player : MonoBehaviour
         audioSource.Play();
     }
 
-    public void TrippelShotActive()
+    public void TrippleShotActive()
     {
         isTrippleShotActive = true;
-        StartCoroutine(TrippelShotCooldownRoutine());
+        StartCoroutine(TrippleShotCooldownRoutine());
 
     }
-    IEnumerator TrippelShotCooldownRoutine()
+    IEnumerator TrippleShotCooldownRoutine()
     {
         yield return new WaitForSeconds(5f);
         isTrippleShotActive = false;
@@ -149,7 +152,10 @@ public class Player : MonoBehaviour
         if(life == 0)
         {            
             stateManager.OnPlayerDeath();
-            Destroy(this.gameObject);            
+            Instantiate(explosion, this.transform.position, Quaternion.identity);
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(this.gameObject, 0.15f); ; 
+            
         }
     } 
     
@@ -182,6 +188,16 @@ public class Player : MonoBehaviour
         }else if(life ==1)
         {
             damageHigh.SetActive(true);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "EnemyLaser")
+        {
+            Destroy(collision.gameObject);
+            GameObject _laserExplosion = Instantiate(explosion, collision.transform.position, Quaternion.identity);
+            _laserExplosion.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            Damage();
         }
     }
 }

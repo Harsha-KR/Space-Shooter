@@ -209,6 +209,8 @@ MonoBehaviour:
   laser: {fileID: 2409857614781025958, guid: 3e329c4465c7ed145afdd726866105e7, type: 3}
   trippleShot: {fileID: 9044741406618310950, guid: 1a5842e985dc87f4cbabc226254525c9,
     type: 3}
+  explosion: {fileID: 3225007440514334632, guid: ad8507466c5be094bb874eaffa25257b,
+    type: 3}
   fireRate: 0.15
   shieldEffect: {fileID: 6266742584137153427}
   damageLow: {fileID: 567488945268120698}

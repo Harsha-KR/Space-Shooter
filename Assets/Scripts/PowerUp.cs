@@ -37,7 +37,7 @@ public class PowerUp : MonoBehaviour
                 switch(pType)
                 {
                     case PowerUpType.TrippleShot: 
-                        player.TrippelShotActive();
+                        player.TrippleShotActive();
                         break;
                     case PowerUpType.Speed: 
                         player.SpeedPowerupActive();

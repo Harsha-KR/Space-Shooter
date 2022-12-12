@@ -1,17 +1,29 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     AudioSource audioSource;
-
+    [SerializeField]
+    AudioClip enemyExplosionAudio;
+    [SerializeField]
+    AudioClip enemyLaserAudio;
     Animator anim;
     [SerializeField]
     float speed = 4f;
 
     Player player;
     int points;
+
+    [SerializeField]
+    private GameObject enemyLaser;
+    Vector3 enemyLaserOffset = new Vector3(0, -0.9f, 0f);
+
+    float canFire = 1f;
+    float fireRate;
+
+    public bool isEnemyAlive;
+    
 
     private void Start()
     {
@@ -33,11 +45,26 @@ public class Enemy : MonoBehaviour
         }
         points = Random.Range(10, 15);
         speed += player.speedModifier/1000;
+
+        isEnemyAlive = true;
+        fireRate = Random.Range(2f, 5f);
     }
 
     void Update()
     {
         Move();
+        EnemyFire();
+    }
+
+    private void EnemyFire()
+    {
+        if(Time.time >= canFire && isEnemyAlive)
+        {
+            canFire = Time.time + fireRate;
+            Instantiate(enemyLaser, this.transform.position + enemyLaserOffset, Quaternion.identity);
+            audioSource.clip = enemyLaserAudio;
+            audioSource.Play();
+        }
     }
 
     private void Move()
@@ -60,7 +87,7 @@ public class Enemy : MonoBehaviour
             }
             Destroy(other.gameObject);
             ExplosionSequence();
-                     
+            isEnemyAlive = false;
             
         }else if(other.tag == "Player")
         {
@@ -70,12 +97,14 @@ public class Enemy : MonoBehaviour
                 player.Damage();
             }
             ExplosionSequence();
+            isEnemyAlive = false;
         }
     }
 
     private void ExplosionSequence()
     {
         anim.SetTrigger("isTrigger");
+        audioSource.clip = enemyExplosionAudio;
         audioSource.Play();
         this.gameObject.GetComponent<Collider2D>().enabled = false;
         Destroy(this.gameObject, 2.2f);

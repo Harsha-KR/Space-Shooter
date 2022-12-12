@@ -48,7 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6d9a6bf217fc044b3d6a11d8462f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyExplosionAudio: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
+  enemyLaserAudio: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   speed: 2
+  enemyLaser: {fileID: 2409857614781025958, guid: f08e57135949db34e8b5cce03557ef8d,
+    type: 3}
+  isEnemyAlive: 1
 --- !u!212 &6330512248928308735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -175,7 +180,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
