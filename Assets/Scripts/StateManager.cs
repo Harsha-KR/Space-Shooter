@@ -19,6 +19,11 @@ public class StateManager : MonoBehaviour
         {
             RestartGame();
         }
+        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitApplication();
+        }
     }
 
     private void RestartGame()
@@ -30,6 +35,11 @@ public class StateManager : MonoBehaviour
     {
         isPlayerDead = true;
         uIManager.GameOver();
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
     }
 
 }
