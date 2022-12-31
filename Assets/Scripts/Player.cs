@@ -40,15 +40,37 @@ public class Player : MonoBehaviour
     private bool isTrippleShotActive;
     public bool isShieldActive;
 
-    private int score = 0000;
+    [SerializeField]
+    bool isRightPlayer;
 
     public float speedModifier;
 
     UIManager uIManager;
 
+    Animator playerAnimator;
+
+    float horizontalInput;
+    float verticalInput;
+
     void Start()
     {
-        this.transform.position = Vector3.zero;
+        if (stateManager != null )
+        {
+            if(stateManager.isCoOp == false)
+            {
+                this.transform.position = Vector3.zero;
+            }
+            if(stateManager.isCoOp == true && isRightPlayer == true)
+            {
+                this.transform.position = new Vector3(5f, -1.5f, 0);
+            }
+            if (stateManager.isCoOp == true && isRightPlayer == false)
+            {
+                this.transform.position = new Vector3(-5f, -1.5f, 0);
+            }
+
+        }
+        
         laserOffset = new Vector3(0, 0.9f, 0f);
         uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         audioSource = GetComponent<AudioSource>();
@@ -66,13 +88,19 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Audio Source is null on player");
         }
+
+        playerAnimator = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
         CalculateMovement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > canFire && isRightPlayer == false)
+        {
+            FireLaser();
+        }
+        if (Input.GetKeyDown(KeyCode.RightControl) && Time.time > canFire && isRightPlayer == true)
         {
             FireLaser();
         }
@@ -105,14 +133,28 @@ public class Player : MonoBehaviour
 
     private void CalculateMovement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        if(isRightPlayer == false)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
+
+        if(isRightPlayer == true)
+        {
+            horizontalInput = Input.GetAxis("Player2 Horizontal");
+            verticalInput = Input.GetAxis("Player2 Vertical");
+        }
+        
+
+        playerAnimator.SetFloat("Blend", horizontalInput);
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
 
+        speedModifier = stateManager.Score;
+
         transform.Translate(direction * (speed + speedModifier/75) * Time.deltaTime);
 
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3f, 0f), 0f);
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -2f, 0f), 0f);
         
         if (transform.position.x > 9.3f)
         {
@@ -146,11 +188,11 @@ public class Player : MonoBehaviour
 
         life--;
 
-        uIManager.UpdateLives(life);
+        uIManager.UpdateLives(life,isRightPlayer);
         FireDamage();
 
         if(life == 0)
-        {            
+        {
             stateManager.OnPlayerDeath();
             Instantiate(explosion, this.transform.position, Quaternion.identity);
             this.GetComponent<BoxCollider2D>().enabled = false;
@@ -171,13 +213,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         isShieldActive = false;
         shieldEffect.gameObject.SetActive(false);
-    }
-
-    public void ScoreKeeper(int points)
-    {
-        score += points;
-        speedModifier = (float)score;
-        uIManager.UpdateScore(score);
     }
 
     public void FireDamage()

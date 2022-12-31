@@ -12,7 +12,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float speed = 4f;
 
-    Player player;
+    StateManager stateManager;
+
+    //Player player;
     int points;
 
     [SerializeField]
@@ -33,8 +35,8 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("Animator is null on: " + this.gameObject.name);
         }
-        player = GameObject.Find("Player").GetComponent<Player>();
-        if(player == null)
+        stateManager = FindObjectOfType<StateManager>();
+        if(stateManager == null)
         {
             Debug.Log("Player is null in" + this.gameObject.name);
         }
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Audio source is null in " + this.gameObject.name);
         }
         points = Random.Range(10, 15);
-        speed += player.speedModifier/1000;
+        speed += stateManager.Score/2000;
 
         isEnemyAlive = true;
         fireRate = Random.Range(2f, 5f);
@@ -81,9 +83,9 @@ public class Enemy : MonoBehaviour
     {
         if(other.tag == "Laser")
         {
-            if (player != null)
+            if (stateManager != null)
             {
-                player.ScoreKeeper(points);
+                stateManager.ScoreKeeper(points);
             }
             Destroy(other.gameObject);
             ExplosionSequence();

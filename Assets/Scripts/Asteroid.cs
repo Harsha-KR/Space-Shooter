@@ -8,6 +8,8 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     GameObject explosionVFX;
     SpawnManager spawnManager;
+    [SerializeField]
+    GameObject startText;
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class Asteroid : MonoBehaviour
     {
         if (other.CompareTag("Laser"))
         {
+            startText.SetActive(false);
             Destroy(other.gameObject);
             Instantiate(explosionVFX, this.transform.position, Quaternion.identity);
             spawnManager.StartSpawnning();
