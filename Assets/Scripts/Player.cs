@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     public float speedModifier;
 
     UIManager uIManager;
+    [SerializeField]
+    GameObject pauseMenu;
 
     Animator playerAnimator;
 
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour
             Debug.LogError("SpawnManager is null, asign the Game object in inspector");
         }
 
-        if(audioSource == null)
+        if (audioSource == null)
         {
             Debug.LogError("Audio Source is null on player");
         }
@@ -103,6 +105,17 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightControl) && Time.time > canFire && isRightPlayer == true)
         {
             FireLaser();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(pauseMenu.activeSelf == true) 
+            {
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+            }
         }
     }
     private void FireLaser()
