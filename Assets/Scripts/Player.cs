@@ -111,10 +111,12 @@ public class Player : MonoBehaviour
             if(pauseMenu.activeSelf == true) 
             {
                 pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
             }
             else
             {
                 pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
             }
         }
     }

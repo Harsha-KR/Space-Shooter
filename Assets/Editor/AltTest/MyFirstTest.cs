@@ -8,7 +8,7 @@ public class MyFirstTest
     [OneTimeSetUp]
     public void SetUp()
     {
-        altDriver =new AltDriver();
+        altDriver = new AltDriver();
     }
 
     //At the end of the test closes the connection with the socket
@@ -19,26 +19,46 @@ public class MyFirstTest
     }
 
     [Test]
-    public void Test1()
+    public void EnterSinglePlayer()
     {
+        altDriver.LoadScene("MainMenu");
         altDriver.FindObject(By.NAME, "Canvas/Single_Player_btn").Tap();
-        altDriver.WaitForCurrentSceneToBe(sceneName: "Single_Player2",timeout:3);
-        var astroid = altDriver.FindObject(By.NAME, "Asteroid");
-        Assert.IsTrue(astroid.enabled);
+        altDriver.WaitForCurrentSceneToBe("Single_Player", timeout: 10);
+        var currentScene = altDriver.GetCurrentScene();
+        string currentSceneShouldBe = "Single_Player";
+        Assert.That(currentScene == currentSceneShouldBe);
     }
     [Test]
-    public void Test2()
+    public void PauseTheTitle()
     {
-        altDriver.PressKey(AltKeyCode.Space);
+        altDriver.PressKey(AltKeyCode.Escape);
+        var pauseMenu = altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel");
+        Assert.IsTrue(pauseMenu.enabled);
     }
     [Test]
-    public void test3()
+    public void ResumeTheTitleByPressingEscape()
     {
-        altDriver.PressKey(AltKeyCode.A, duration: 2);
+        altDriver.PressKey(AltKeyCode.Escape);
+        var pauseMenu = altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel");
+        Assert.IsFalse(pauseMenu.enabled);
     }
     [Test]
-    public void test4()
+    public void QuitToMainMenu()
     {
-        altDriver.PressKey(AltKeyCode.D, duration: 2);
+        altDriver.PressKey(AltKeyCode.Escape);
+        if(altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel").enabled)
+        {
+            altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel/Quit to Menu").Tap();
+        }
+        else
+        {
+            altDriver.PressKey(AltKeyCode.Escape);
+            altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel/Quit to Menu").Tap();
+        }
+        altDriver.WaitForCurrentSceneToBe("MainMenu",timeout:3);
+        var currentScene = altDriver.GetCurrentScene();
+        string currentSceneShouldBe = "MainMenu";
+        Assert.That(currentScene == currentSceneShouldBe);
+
     }
 }
