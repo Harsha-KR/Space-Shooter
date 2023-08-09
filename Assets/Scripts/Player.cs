@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             if(pauseMenu.activeSelf == true) 
             {

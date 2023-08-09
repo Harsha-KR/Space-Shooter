@@ -24,14 +24,14 @@ MonoBehaviour:
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
-    _testCaseCount: 7
+    _testCaseCount: 5
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
-  - _selected: 1
+    _testSelectedCount: 2
+  - _selected: 0
     _testName: Gameplay
     _testAssembly: Assembly-CSharp-Editor
     _status: 1
@@ -44,25 +44,11 @@ MonoBehaviour:
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 3
-  - _selected: 1
-    _testName: Gameplay.PlayerMovesLeft
-    _testAssembly: Assembly-CSharp-Editor
-    _status: 1
-    _isSuite: 0
-    _type: NUnit.Framework.Internal.TestMethod
-    _parentName: Gameplay
-    _testCaseCount: 1
-    _foldOut: 1
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0.6575212
-    path: Assets/Editor/AltTest/Gameplay.cs
     _testSelectedCount: 0
-  - _selected: 1
-    _testName: Gameplay.Test2
+  - _selected: 0
+    _testName: Gameplay.A_PlayerMovesLeft
     _testAssembly: Assembly-CSharp-Editor
-    _status: 1
+    _status: 0
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: Gameplay
@@ -70,41 +56,55 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 0.1846649
-    path: Assets/Editor/AltTest/Gameplay.cs
-    _testSelectedCount: 0
-  - _selected: 1
-    _testName: Gameplay.test4
-    _testAssembly: Assembly-CSharp-Editor
-    _status: 1
-    _isSuite: 0
-    _type: NUnit.Framework.Internal.TestMethod
-    _parentName: Gameplay
-    _testCaseCount: 1
-    _foldOut: 1
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 2.0684667
+    _testDuration: 0
     path: Assets/Editor/AltTest/Gameplay.cs
     _testSelectedCount: 0
   - _selected: 0
+    _testName: Gameplay.B_PlayerMovesRight
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Gameplay
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Editor/AltTest/Gameplay.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: Gameplay.C_PlayerDestroysAsteroid
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: Gameplay
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Editor/AltTest/Gameplay.cs
+    _testSelectedCount: 0
+  - _selected: 1
     _testName: MyFirstTest
     _testAssembly: Assembly-CSharp-Editor
     _status: -1
     _isSuite: 1
     _type: NUnit.Framework.Internal.TestFixture
     _parentName: D:/GitHub/Space-Shooter/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
-    _testCaseCount: 4
+    _testCaseCount: 2
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
     path: 
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: MyFirstTest.EnterSinglePlayer
+    _testSelectedCount: 2
+  - _selected: 1
+    _testName: MyFirstTest.A_EnterSinglePlayer
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: 1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: MyFirstTest
@@ -112,49 +112,37 @@ MonoBehaviour:
     _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
-    _testDuration: 0
+    _testDuration: 0.2954985
     path: Assets/Editor/AltTest/MyFirstTest.cs
     _testSelectedCount: 0
-  - _selected: 0
-    _testName: MyFirstTest.PauseTheTitle
+  - _selected: 1
+    _testName: MyFirstTest.B_PauseTheTitle
     _testAssembly: Assembly-CSharp-Editor
-    _status: 0
+    _status: -1
     _isSuite: 0
     _type: NUnit.Framework.Internal.TestMethod
     _parentName: MyFirstTest
     _testCaseCount: 1
     _foldOut: 1
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: Assets/Editor/AltTest/MyFirstTest.cs
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: MyFirstTest.QuitToMainMenu
-    _testAssembly: Assembly-CSharp-Editor
-    _status: 0
-    _isSuite: 0
-    _type: NUnit.Framework.Internal.TestMethod
-    _parentName: MyFirstTest
-    _testCaseCount: 1
-    _foldOut: 1
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
-    path: Assets/Editor/AltTest/MyFirstTest.cs
-    _testSelectedCount: 0
-  - _selected: 0
-    _testName: MyFirstTest.ResumeTheTitleByPressingEscape
-    _testAssembly: Assembly-CSharp-Editor
-    _status: 0
-    _isSuite: 0
-    _type: NUnit.Framework.Internal.TestMethod
-    _parentName: MyFirstTest
-    _testCaseCount: 1
-    _foldOut: 1
-    _testResultMessage: 
-    _testStackTrace: 
-    _testDuration: 0
+    _testResultMessage: 'AltTester.AltTesterUnitySDK.Driver.NotFoundException : Object
+      //Canvas/PauseMenuPanel not found'
+    _testStackTrace: "  at AltTester.AltTesterUnitySDK.Driver.Communication.DriverCommunicationHandler.handleErrors
+      (AltTester.AltTesterUnitySDK.Driver.Commands.CommandError error) [0x003fd]
+      in D:\\GitHub\\Space-Shooter\\Assets\\AltTester\\Runtime\\AltDriver\\Communication\\DriverCommunicationHandler.cs:250
+      \r\n  at AltTester.AltTesterUnitySDK.Driver.Communication.DriverCommunicationHandler.Recvall[T]
+      (AltTester.AltTesterUnitySDK.Driver.Commands.CommandParams param) [0x00134]
+      in D:\\GitHub\\Space-Shooter\\Assets\\AltTester\\Runtime\\AltDriver\\Communication\\DriverCommunicationHandler.cs:105
+      \r\n  at AltTester.AltTesterUnitySDK.Driver.Commands.AltFindObject.Execute
+      () [0x00011] in D:\\GitHub\\Space-Shooter\\Assets\\AltTester\\Runtime\\AltDriver\\Commands\\FindObjects\\AltFindObject.cs:34
+      \r\n  at AltTester.AltTesterUnitySDK.Driver.AltDriver.FindObject (AltTester.AltTesterUnitySDK.Driver.By
+      by, System.String value, AltTester.AltTesterUnitySDK.Driver.By cameraBy, System.String
+      cameraValue, System.Boolean enabled) [0x00000] in D:\\GitHub\\Space-Shooter\\Assets\\AltTester\\Runtime\\AltDriver\\AltDriver.cs:177
+      \r\n  at MyFirstTest.B_PauseTheTitle () [0x00018] in D:\\GitHub\\Space-Shooter\\Assets\\Editor\\AltTest\\MyFirstTest.cs:35
+      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <d6232873609549b8a045fa15811a5bd3>:0 "
+    _testDuration: 0.1887978
     path: Assets/Editor/AltTest/MyFirstTest.cs
     _testSelectedCount: 0
   - _selected: 1
@@ -233,17 +221,17 @@ MonoBehaviour:
     _buildIndex: 0
   - _toBeBuilt: 1
     _path: Assets/Scenes/Single_Player.unity
-    _buildIndex: 1
+    _buildIndex: 0
   - _toBeBuilt: 1
     _path: Assets/Scenes/Co_Op.unity
-    _buildIndex: 2
+    _buildIndex: 0
   platform: 2
   StandaloneTarget: 5
   RanInEditor: 0
   ScenePathDisplayed: 0
   InputVisualizer: 0
   ShowPopUp: 1
-  BuildLocationPath: C:/Users/harsh/Desktop/Space Shooter
+  BuildLocationPath: C:/Users/harsh/Desktop/NewSpaceShooter
   createXMLReport: 0
   xMLFilePath: 
   AltServerPort: 13000

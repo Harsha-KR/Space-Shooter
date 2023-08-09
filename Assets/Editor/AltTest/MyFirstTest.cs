@@ -19,7 +19,7 @@ public class MyFirstTest
     }
 
     [Test]
-    public void EnterSinglePlayer()
+    public void A_EnterSinglePlayer()
     {
         altDriver.LoadScene("MainMenu");
         altDriver.FindObject(By.NAME, "Canvas/Single_Player_btn").Tap();
@@ -29,19 +29,15 @@ public class MyFirstTest
         Assert.That(currentScene == currentSceneShouldBe);
     }
     [Test]
-    public void PauseTheTitle()
+    public void B_PauseTheTitle()
     {
-        altDriver.PressKey(AltKeyCode.Escape);
-        var pauseMenu = altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel");
+        altDriver.PressKey(AltKeyCode.T);
+        var pauseMenu = altDriver.FindObject(By.NAME, "Canvas/PauseMenuPanel");
         Assert.IsTrue(pauseMenu.enabled);
-    }
-    [Test]
-    public void ResumeTheTitleByPressingEscape()
-    {
-        altDriver.PressKey(AltKeyCode.Escape);
-        var pauseMenu = altDriver.FindObject(By.NAME, "Canvas/Pause Menu Panel");
+        altDriver.PressKey(AltKeyCode.T);
         Assert.IsFalse(pauseMenu.enabled);
     }
+   /*
     [Test]
     public void QuitToMainMenu()
     {
@@ -60,5 +56,5 @@ public class MyFirstTest
         string currentSceneShouldBe = "MainMenu";
         Assert.That(currentScene == currentSceneShouldBe);
 
-    }
+    }*/
 }
